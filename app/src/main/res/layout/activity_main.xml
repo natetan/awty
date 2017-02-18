@@ -12,7 +12,60 @@
   tools:context="edu.washington.swifties.arewethereyet.MainActivity">
 
   <TextView
+    android:text="to"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Hello World!"/>
+    android:layout_below="@+id/messageEditText"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="17dp"
+    android:id="@+id/toTextView"
+    android:textSize="48dp"/>
+
+  <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:id="@+id/phoneEditText"
+    android:inputType="phone"
+    android:hint="Type phone number here..."
+    android:layout_marginTop="19dp"
+    android:layout_below="@+id/toTextView"
+    android:layout_alignLeft="@+id/messageEditText"
+    android:layout_alignStart="@+id/messageEditText"
+    android:textAlignment="center"/>
+
+  <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="textPersonName"
+    android:ems="10"
+    android:layout_marginTop="24dp"
+    android:id="@+id/messageEditText"
+    android:hint="Type your message here..."
+    android:textAlignment="center"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"/>
+
+  <Button
+    android:text="START"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/intervalEditText"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="89dp"
+    android:id="@+id/startStopButton"
+    android:textColor="@android:color/holo_green_dark"/>
+
+  <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="number"
+    android:ems="10"
+    android:id="@+id/intervalEditText"
+    android:hint="Interval in minutes..."
+    android:textAlignment="center"
+    android:layout_centerVertical="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"/>
 </RelativeLayout>
