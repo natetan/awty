@@ -19,9 +19,12 @@ public class MainActivity extends Activity {
   private Button startStopButton;
   private boolean fieldsAreFilled = true;
 
+  private AlarmManager manager;
+
   public static final String PHONE_NUMBER = "phone_number";
 
   private PendingIntent pi;
+  private Intent alarmIntent;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +35,12 @@ public class MainActivity extends Activity {
     phoneEditText = (EditText) findViewById(R.id.phoneEditText);
     intervalEditText = (EditText) findViewById(R.id.intervalEditText);
 
-    final Intent alarmIntent = new Intent(MainActivity.this, AlarmReceiver.class);
+    manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+    alarmIntent = new Intent(this, AlarmReceiver.class);
     pi = PendingIntent.getBroadcast(MainActivity.this, 0, alarmIntent, 0);
+
+
 
     startStopButton = (Button) findViewById(R.id.startStopButton);
 
@@ -55,9 +62,9 @@ public class MainActivity extends Activity {
               Toast.LENGTH_SHORT).show();
         }
 
-        Log.d("start", "Message length: " + messageEditText.getText().toString().length());
-        Log.d("start", "Phone length: " + phoneEditText.getText().toString().length());
-        Log.d("start", "interval length: " + messageEditText.getText().toString().length());
+//        Log.d("start", "Message length: " + messageEditText.getText().toString().length());
+//        Log.d("start", "Phone length: " + phoneEditText.getText().toString().length());
+//        Log.d("start", "interval length: " + messageEditText.getText().toString().length());
 
         // Do something if all the fields are filled up
         if (fieldsAreFilled) {
@@ -73,7 +80,7 @@ public class MainActivity extends Activity {
             startAlarm();
           } else {
             startStopButton.setText("START");
-            startStopButton.setTextColor(Color.GREEN);
+            startStopButton.setTextColor(Color.BLUE);
             stopAlarm();
           }
         }
@@ -83,13 +90,15 @@ public class MainActivity extends Activity {
 
   // Begins the alarm manager with the user given interval
   private void startAlarm() {
+    Toast.makeText(MainActivity.this, "startAlarm called", Toast.LENGTH_SHORT).show();
     AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-    manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-        Integer.parseInt(intervalEditText.getText().toString()), pi);
+    manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+        2000, pi);
   }
 
   // Cancels the alarm (so it stops running in the background as well)
   private void stopAlarm() {
+    Toast.makeText(MainActivity.this, "stopAlarm called", Toast.LENGTH_SHORT).show();
     AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
     manager.cancel(pi);
   }
