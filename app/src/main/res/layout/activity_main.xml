@@ -55,7 +55,7 @@
     android:layout_centerHorizontal="true"
     android:layout_marginTop="89dp"
     android:id="@+id/startStopButton"
-    android:textColor="@android:color/holo_green_dark"/>
+    android:textColor="?attr/actionMenuTextColor"/>
 
   <EditText
     android:layout_width="match_parent"
