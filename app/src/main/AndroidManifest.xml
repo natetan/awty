@@ -3,6 +3,7 @@
           package="edu.washington.swifties.arewethereyet">
 
   <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+  <uses-permission android:name="android.permission.SEND_SMS"/>
 
   <application
     android:allowBackup="true"
