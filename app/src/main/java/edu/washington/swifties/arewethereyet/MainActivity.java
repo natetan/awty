@@ -20,6 +20,7 @@ public class MainActivity extends Activity {
   private boolean fieldsAreFilled = true;
 
   public static final String PHONE_NUMBER = "phone_number";
+  public static final String MESSAGE = "message";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +87,7 @@ public class MainActivity extends Activity {
 
     Intent alarmIntent = new Intent(context, AlarmReceiver.class);
     alarmIntent.putExtra(PHONE_NUMBER, phoneEditText.getText().toString());
+    alarmIntent.putExtra(MESSAGE, messageEditText.getText().toString());
     PendingIntent pi = PendingIntent.getBroadcast(MainActivity.this, 0, alarmIntent, 0);
     AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
     manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
