@@ -1,11 +1,14 @@
 package edu.washington.swifties.arewethereyet;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -79,6 +82,19 @@ public class MainActivity extends Activity {
 
   // Begins the alarm manager with the user given interval
   private void startAlarm(Context context) {
+
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+      if (MainActivity.this.checkSelfPermission(Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+        Log.i("onReceive", "Permission to send SMS not yet granted, requesting...");
+
+        MainActivity.this.requestPermissions(new String[]{
+            Manifest.permission.SEND_SMS
+        }, 1);
+      }
+    }
+
+
     Toast.makeText(MainActivity.this, "You set alarm for " +
         Integer.parseInt(intervalEditText.getText().toString()) * 1000 + " minutes", Toast.LENGTH_SHORT).show();
 

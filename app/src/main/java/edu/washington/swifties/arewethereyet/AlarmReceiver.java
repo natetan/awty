@@ -12,7 +12,6 @@ import android.widget.Toast;
  */
 
 public class AlarmReceiver extends BroadcastReceiver {
-
   @Override
   public void onReceive(Context context, Intent intent) {
     Log.d("onReceive", "class is called");
